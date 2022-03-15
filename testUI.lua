@@ -779,13 +779,12 @@ do
 		local active = default
 		self:updateToggle(toggle, nil, active)
 		
-		active = not active
-		self:updateToggle(toggle, nil, active)
-
-		if callback then
-			callback(active, function(...)
-				self:updateToggle(toggle, ...)
-			end)
+		if active then
+			if callback then
+				callback(active, function(...)
+					self:updateToggle(toggle, ...)
+				end)
+			end
 		end
 		
 		toggle.MouseButton1Click:Connect(function()
